@@ -1,0 +1,35 @@
+<ion-view view-title="TMM Marcus Lang">
+      <ion-content overflow-scroll="true">
+        <div class="list card" ng-repeat="video in videos">
+            <div class="item item-text-wrap item-avatar">
+              <img src="img/logo.png">
+              <h2>{{video.snippet.title}}</h2>
+              <p>{{video.snippet.publishedAt | date: 'dd MMM yyyy'}}</p>
+            </div>
+            <div class="item item-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <youtube-video class="embed-responsive-item" video-id="video.id.videoId" player-vars="playerVars"></youtube-video>
+              </div>
+            </div> 
+            <div class="item item-divider tabs tabs-secondary tabs-icon-left">
+              <a class="tab-item" ng-click="likeThisVideo(video)">
+                <i class="icon ion-thumbsup"></i>
+                Like
+              </a>
+              <a class="tab-item" ng-click="shareComment(video)">
+                <i class="icon ion-chatbox"></i>
+                Comment
+              </a>
+              <a class="tab-item" ng-click="shareAnywhere(video)">
+                <i class="icon ion-share"></i>
+                Share
+              </a>
+            </div>
+        </div>
+        <ion-infinite-scroll
+          ng-if="nextVis"
+          distance="1%"
+          on-infinite="getNextPage()">
+        </ion-infinite-scroll>
+      </ion-content>
+</ion-view>

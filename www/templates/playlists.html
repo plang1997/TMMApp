@@ -1,0 +1,21 @@
+<ion-view view-title="Playlists">
+  <ion-content overflow-scroll="true">
+    <div class="list card" ng-repeat="playlist in playlists"  ng-click="gotoPlaylist('{{playlist.id}}')">
+        <div class="item item-text-wrap item-avatar">
+          <img src="img/logo.png">
+          <h2>{{playlist.snippet.title}}</h2>
+          <p>{{playlist.snippet.publishedAt | date: 'dd MMM yyyy'}}</p>
+        </div>
+        <div class="item item-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img ng-src="{{playlist.snippet.thumbnails.high.url}}">
+          </div>
+        </div> 
+    </div>
+    <ion-infinite-scroll
+      ng-if="nextVis"
+      distance="1%"
+      on-infinite="getNextPage()">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
